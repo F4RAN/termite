@@ -1,14 +1,25 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
+mod config;
+use config::Config;
+
+
+pub(crate) fn get_api_url_from_config(config: &Config) -> String {
+    config.api_url.clone()
+}
+
+pub fn get_api_url() -> String {
+    get_api_url_from_config(&Config::from_env())
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-
+    use crate::config::Config;
     #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+    fn api_url_check() {
+        let config = Config {
+            api_url: "https://api.example.com".to_string(),
+        };
+        let result = get_api_url_from_config(&config);
+        assert_eq!(result, "https://api.example.com");
     }
 }

@@ -79,6 +79,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9330f8b2ff13f34540b44e946ef35111825727b38d33286ef986142615121801"
 
 [[package]]
+name = "envy"
+version = "0.4.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3f47e0157f2cb54f5ae1bd371b30a2ae4311e1c028f575cd4e81de7353215965"
+dependencies = [
+ "serde",
+]
+
+[[package]]
 name = "errno"
 version = "0.3.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -360,6 +369,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9a8e94ea7f378bd32cbbd37198a4a91436180c5bb472411e48b5ec2e2124ae9e"
 dependencies = [
  "serde_core",
+ "serde_derive",
 ]
 
 [[package]]
@@ -470,12 +480,17 @@ checksum = "0bf256ce5efdfa370213c1dabab5935a12e49f2c58d15e9eac2870d3b4f27263"
 [[package]]
 name = "termite-core"
 version = "0.1.0"
+dependencies = [
+ "envy",
+ "serde",
+]
 
 [[package]]
 name = "termite-server"
 version = "0.1.0"
 dependencies = [
  "axum",
+ "termite-core",
  "tokio",
  "tower",
 ]
@@ -483,6 +498,9 @@ dependencies = [
 [[package]]
 name = "termite-tui"
 version = "0.1.0"
+dependencies = [
+ "termite-core",
+]
 
 [[package]]
 name = "tokio"
