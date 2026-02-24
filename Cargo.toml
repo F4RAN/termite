@@ -1,0 +1,7 @@
+[workspace]
+members = [
+    "termite-server",
+    "termite-tui",
+    "termite-core",
+]
+resolver = "2"

@@ -1,0 +1,30 @@
+# Rust / Cargo
+/target/
+**/target/
+
+# Backup files
+*.rs.bk
+*.bak
+*~
+
+# Local env
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE / editor
+.idea/
+*.swp
+*.swo
+.vscode/settings.json
+
+# Debug
+*.pdb
+*.dSYM/
+
+# rust-analyzer
+rust-toolchain.toml.bak
