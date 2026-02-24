@@ -1,0 +1,25 @@
+info:
+  name: register
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{base_url}}/api/v1/public/auth/register"
+  body:
+    type: json
+    data: |-
+      {
+        "username":"f4ran",
+        "nickname":"F4RAN",
+        "password":"vitalize",
+        "email":"f4ran@vitalize.dev",
+        "mobile":""
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

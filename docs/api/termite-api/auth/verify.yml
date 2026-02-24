@@ -1,0 +1,28 @@
+info:
+  name: verify
+  type: http
+  seq: 2
+
+http:
+  method: PUT
+  url: "{{base_url}}/api/v1/public/verify?user_id=87d6870c-7dca-4c34-afac-b215fc782452"
+  headers:
+    - name: ""
+      value: ""
+  params:
+    - name: user_id
+      value: 87d6870c-7dca-4c34-afac-b215fc782452
+      type: query
+  body:
+    type: json
+    data: |-
+      {
+        "otp": "123456"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

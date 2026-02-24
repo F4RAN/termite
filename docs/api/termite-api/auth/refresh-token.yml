@@ -1,0 +1,21 @@
+info:
+  name: refresh-token
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: "{{base_url}}/api/v1/public/auth/refresh-token"
+  body:
+    type: json
+    data: |-
+      {
+        "refresh_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkY0UkFOIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.kbMDoyUeD4W7c14H9E4omSLnxFMgMcL4tn-D11SJX9o"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

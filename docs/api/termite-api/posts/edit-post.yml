@@ -1,0 +1,25 @@
+info:
+  name: edit-post
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: "{{base_url}}/api/v1/posts/:post_id"
+  params:
+    - name: post_id
+      value: e04fbf9c-2398-42d8-baba-3ba57c78d1a9
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "body": "updated content here"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

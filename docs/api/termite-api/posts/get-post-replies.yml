@@ -1,0 +1,19 @@
+info:
+  name: get-post-replies
+  type: http
+  seq: 8
+
+http:
+  method: GET
+  url: "{{base_url}}/api/v1/posts/:post_id/replies"
+  params:
+    - name: post_id
+      value: e04fbf9c-2398-42d8-baba-3ba57c78d1a9
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

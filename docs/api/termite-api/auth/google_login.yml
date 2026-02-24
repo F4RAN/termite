@@ -1,0 +1,21 @@
+info:
+  name: google_login
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: "{{base_url}}/api/v1/public/auth/google_login"
+  body:
+    type: json
+    data: |-
+      {
+        "code": "4/0AfJohXn..."
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

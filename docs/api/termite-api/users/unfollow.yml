@@ -1,0 +1,19 @@
+info:
+  name: unfollow
+  type: http
+  seq: 9
+
+http:
+  method: DELETE
+  url: "{{base_url}}/api/v1/users/:username/follow"
+  params:
+    - name: username
+      value: f4ran
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

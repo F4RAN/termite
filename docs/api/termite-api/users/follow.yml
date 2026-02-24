@@ -1,0 +1,19 @@
+info:
+  name: follow
+  type: http
+  seq: 8
+
+http:
+  method: POST
+  url: "{{base_url}}/api/v1/users/:username/follow"
+  params:
+    - name: username
+      value: f4ran
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

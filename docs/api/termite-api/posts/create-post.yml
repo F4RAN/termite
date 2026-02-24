@@ -1,0 +1,22 @@
+info:
+  name: create-post
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{base_url}}/api/v1/posts"
+  body:
+    type: json
+    data: |-
+      {
+        "body":"Hello World, Welcome to termite.",
+        "media":["media_id_1","media_id_2"]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,23 @@
+info:
+  name: send-otp
+  type: http
+  seq: 6
+
+http:
+  method: PUT
+  url: "{{base_url}}/api/v1/users/send-otp"
+  body:
+    type: json
+    data: |-
+      {
+        "otp_type":"email",
+        "new_email":"0xf4ran@gmail.com",
+        "new_mobile":""
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

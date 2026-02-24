@@ -1,0 +1,90 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table user {
+  id uuid [primary key]
+  username varchar [unique, not null]
+  email varchar [unique]
+  mobile varchar [unique]
+  password_hash varchar [not null]
+  nickname varchar
+  avatar varchar
+  header varchar
+  role varchar [default: 'user']
+  deleted boolean [default: false]
+  created_at timestamp
+}
+
+Table follow {
+  id uuid [primary key]
+  following_user_id uuid
+  followed_user_id uuid
+  deleted boolean [default: false]
+  created_at timestamp
+}
+
+Table like {
+  id uuid [primary key]
+  post_id uuid
+  user_id uuid
+  deleted boolean [default: false]
+  created_at timestamp
+}
+
+Table post {
+  id uuid [primary key]
+  body text
+  user_id uuid [not null]
+  reply_to_post_id uuid
+  quote_to_post_id uuid
+  status varchar [default: 'published']
+  deleted boolean [default: false]
+  edited_at timestamp
+  created_at timestamp
+}
+
+Table repost {
+  id uuid [primary key]
+  post_id uuid [not null]
+  user_id uuid [not null]
+  deleted boolean [default: false]
+  created_at timestamp
+}
+
+Table post_media {
+  id uuid [primary key]
+  post_id uuid [not null]
+  media_id varchar
+}
+
+Table media {
+  id uuid [primary key]
+  type varchar
+  path varchar
+}
+
+Ref user_posts: post.user_id > user.id
+
+Ref: user.id < follow.following_user_id
+
+Ref: user.id < follow.followed_user_id
+
+Ref post_medias: post_media.post_id > post.id
+
+Ref: media.id < post_media.media_id
+
+Ref liked_by: like.user_id > user.id
+
+Ref liked: like.post_id > post.id
+
+Ref comment: post.reply_to_post_id > post.id
+
+Ref quote: post.quote_to_post_id > post.id
+
+Ref reposted_post: repost.post_id > post.id
+
+Ref reposted_by: repost.user_id > user.id
+
+
+
+

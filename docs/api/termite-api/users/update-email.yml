@@ -1,0 +1,22 @@
+info:
+  name: update-email
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: "{{base_url}}/api/v1/users/email"
+  body:
+    type: json
+    data: |-
+      {
+        "new_email":"0xf4ran@gmail.com",
+        "otp":"123456"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
