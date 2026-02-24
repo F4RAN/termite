@@ -13,7 +13,7 @@ impl UpdatePassword {
 
     pub async fn execute(&self, user_id: &Id, password_hash: PasswordHash) -> Result<User, String> {
         let mut user = self.user_repo.find_by_id(user_id).await?;
-        user.password_hash = password_hash;
+        user.password_hash = Some(password_hash);
         self.user_repo.save(&user).await
     }
 }

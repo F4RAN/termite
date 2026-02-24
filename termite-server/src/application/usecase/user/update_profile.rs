@@ -14,7 +14,7 @@ impl UpdateProfile {
     pub async fn execute(&self, user_id: &Id, nickname: Option<Nickname>) -> Result<User, String> {
         let mut user = self.user_repo.find_by_id(user_id).await?;
         if let Some(n) = nickname {
-            user.nickname = Some(n);
+            user.nickname = n;
         }
         self.user_repo.save(&user).await
     }

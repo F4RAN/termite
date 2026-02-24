@@ -29,8 +29,8 @@ impl UserRepository for PgUserRepository {
         .bind(user.username.as_str())
         .bind(user.email.as_ref().map(|e| e.as_str()))
         .bind(user.mobile.as_ref().map(|m| m.as_str()))
-        .bind(user.password_hash.as_str())
-        .bind(user.nickname.as_ref().map(|n| n.as_str()))
+        .bind(user.password_hash.as_ref().map(|p| p.as_str()))
+        .bind(user.nickname.as_str())
         .bind(user.avatar.as_ref().map(|a| a.as_uuid()))
         .bind(user.header.as_ref().map(|h| h.as_uuid()))
         .bind(user.role.as_db_str())
@@ -87,11 +87,11 @@ fn row_to_user(row: &sqlx::postgres::PgRow) -> Result<User, String> {
     let mobile = row
         .get::<Option<String>, _>("mobile")
         .and_then(|s| Mobile::new(s).ok());
-    let password_hash = PasswordHash::new(row.get("password_hash"))
+    let password_hash = row
+        .get::<Option<String>, _>("password_hash")
+        .and_then(|s| PasswordHash::new(s).ok());
+    let nickname = Nickname::new(row.get::<String, _>("nickname"))
         .map_err(|e| e.to_string())?;
-    let nickname = row
-        .get::<Option<String>, _>("nickname")
-        .and_then(|s| Nickname::new(s).ok());
     let avatar = row.get::<Option<uuid::Uuid>, _>("avatar").map(Id::from_uuid);
     let header = row.get::<Option<uuid::Uuid>, _>("header").map(Id::from_uuid);
     let role = Role::new(row.get::<String, _>("role")).map_err(|e| e.to_string())?;
