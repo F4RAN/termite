@@ -20,4 +20,13 @@ impl MediaType {
             _ => Err("Media type must be image, video, audio, or document".into()),
         }
     }
+
+    pub fn as_db_str(&self) -> &'static str {
+        match self {
+            MediaType::Image => "image",
+            MediaType::Video => "video",
+            MediaType::Audio => "audio",
+            MediaType::Document => "document",
+        }
+    }
 }

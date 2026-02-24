@@ -20,4 +20,14 @@ impl Role {
             _ => Err("Role must be admin, moderator, user, or guest".into()),
         }
     }
+
+    /// Lowercase string for DB storage.
+    pub fn as_db_str(&self) -> &'static str {
+        match self {
+            Role::Admin => "admin",
+            Role::Moderator => "moderator",
+            Role::User => "user",
+            Role::Guest => "guest",
+        }
+    }
 }

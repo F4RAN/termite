@@ -21,6 +21,11 @@ impl Id {
         Id { value: Uuid::new_v4() }
     }
 
+    /// Create Id from a Uuid (e.g. when mapping from DB row).
+    pub fn from_uuid(value: Uuid) -> Self {
+        Id { value }
+    }
+
     pub fn as_uuid(&self) -> &Uuid {
         &self.value
     }

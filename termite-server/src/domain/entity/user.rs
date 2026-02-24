@@ -8,13 +8,13 @@ pub struct User {
     pub username: Username,
     pub email: Option<Email>,
     pub mobile: Option<Mobile>,
-    pub password_hash: PasswordHash,
-    pub nickname: Option<Nickname>,
+    pub password_hash: Option<PasswordHash>,
+    pub nickname: Nickname,
     /// Reference to media.id (avatar image).
     pub avatar: Option<Id>,
     /// Reference to media.id (header/banner image).
     pub header: Option<Id>,
     pub role: Role,
     pub deleted: bool,
-    pub created_at: Option<DateTime<Utc>>,
+    pub created_at: DateTime<Utc>,
 }

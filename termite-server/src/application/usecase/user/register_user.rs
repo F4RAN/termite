@@ -14,11 +14,10 @@ impl RegisterUser {
     pub async fn execute(
         &self,
         username: Username,
-        password_hash: PasswordHash,
-        role: Role,
+        password_hash: Option<PasswordHash>,
         email: Option<Email>,
         mobile: Option<Mobile>,
-        nickname: Option<Nickname>,
+        nickname: Nickname,
     ) -> Result<User, String> {
         if mobile.is_none() && email.is_none() {
             return Err("Mobile number or Email Address is mandatory.".into());
@@ -32,9 +31,9 @@ impl RegisterUser {
             nickname,
             avatar: None,
             header: None,
-            role,
+            role: Role::User,
             deleted: false,
-            created_at: None,
+            created_at: chrono::Utc::now(),
         };
         self.user_repo.save(&user).await
     }

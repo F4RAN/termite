@@ -2,6 +2,7 @@ use axum;
 mod domain;
 mod application;
 mod router;
+mod presentation;
 use termite_core::{get_api_url, get_db_url};
 use sqlx::postgres::PgPoolOptions;
 

@@ -18,4 +18,12 @@ impl PostStatus {
             _ => Err("Post status must be published, draft, or archived".into()),
         }
     }
+
+    pub fn as_db_str(&self) -> &'static str {
+        match self {
+            PostStatus::Published => "published",
+            PostStatus::Draft => "draft",
+            PostStatus::Archived => "archived",
+        }
+    }
 }
